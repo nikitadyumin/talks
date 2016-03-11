@@ -9,22 +9,22 @@ const parse = value =>
     value === ''
         ? new Error('please enter values')
         : isNaN(Number(value))
-        ? new Error('please correct values')
-        : Number(value);
+            ? new Error('please correct values')
+            : Number(value);
 
-const handle = (x, y) =>
+const combine = (x, y) =>
     x instanceof Error
         ? x.message
         : y instanceof Error
-        ? y.message
-        : x + y;
+            ? y.message
+            : x + y;
 
-const xs = Rx.Observable.fromEvent($input1, 'keyup', getValue)
+const xs$ = Rx.Observable.fromEvent($input1, 'keyup', getValue)
     .startWith($input1.value).map(parse);
-const ys = Rx.Observable.fromEvent($input2, 'keyup', getValue)
+const ys$ = Rx.Observable.fromEvent($input2, 'keyup', getValue)
     .startWith($input2.value).map(parse);
 
-xs.combineLatest(ys, handle).subscribe(render);
+xs$.combineLatest(ys$, combine).subscribe(render);
 
 document.body.appendChild($input1);
 document.body.appendChild($input2);
