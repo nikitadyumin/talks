@@ -23,15 +23,15 @@ Rx.Observable.from(gen1(5))
 /**
  * internal completion logic
  */
-Rx.Observable.create(function (o) {
-    o.next(1);
-    o.next(2);
-    o.next(3);
-    setTimeout(() => {
-        o.next(4);
-        o.complete();
-    }, 1000);
-}).subscribe(log('create'));
+//Rx.Observable.create(function (o) {
+//    o.next(1);
+//    o.next(2);
+//    o.next(3);
+//    setTimeout(() => {
+//        o.next(4);
+//        o.complete();
+//    }, 1000);
+//}).subscribe(log('create'));
 
 /**
  *  .take
